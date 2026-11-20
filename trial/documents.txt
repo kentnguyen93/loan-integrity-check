@@ -1,0 +1,400 @@
+=== APP-01302
+--- APP-01302-D1
+BAO CAO KET QUA HOAT DONG KINH DOANH
+Nam 2025
+Don vi tinh: dong
+01. Doanh thu ban hang va cung cap dich vu: 1.364.011.634
+02. Cac khoan giam tru doanh thu: 17.011.634
+10. Doanh thu thuan ve ban hang va cung cap dich vu: 1.347.000.000
+--- APP-01302-D2
+TỜ KHAI THUẾ GIÁ TRỊ GIA TĂNG (Mẫu số 01/GTGT)
+Kỳ tính thuế: năm 2025
+Đơn vị tính: đồng
+Quý 1 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 108.605.561
+Quý 2 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 119.443.906
+Quý 3 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 126.888.333
+Quý 4 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 104.062.400
+Tổng doanh thu chịu thuế cả năm: 459.000.000
+--- APP-01302-D3
+BẢNG KÊ HÓA ĐƠN ĐIỆN TỬ BÁN RA
+Kỳ: 01/2025 - 12/2025
+Đơn vị tính: đồng
+Số lượng hóa đơn: 1281
+Tổng giá trị hóa đơn chưa thuế: 459.000.000
+--- APP-01302-D4
+SAO KÊ TÀI KHOẢN THANH TOÁN
+Từ ngày 01/01/2025 đến ngày 31/12/2025
+Đơn vị tính: đồng
+Tháng 01/2025 - Tổng phát sinh ghi có: 70.000.000
+Tháng 02/2025 - Tổng phát sinh ghi có: 79.000.000
+Tháng 03/2025 - Tổng phát sinh ghi có: 69.000.000
+Tháng 04/2025 - Tổng phát sinh ghi có: 95.000.000
+Tháng 05/2025 - Tổng phát sinh ghi có: 68.000.000
+Tháng 06/2025 - Tổng phát sinh ghi có: 95.000.000
+Tháng 07/2025 - Tổng phát sinh ghi có: 97.000.000
+Tháng 08/2025 - Tổng phát sinh ghi có: 70.000.000
+Tháng 09/2025 - Tổng phát sinh ghi có: 84.000.000
+Tháng 10/2025 - Tổng phát sinh ghi có: 96.000.000
+Tháng 11/2025 - Tổng phát sinh ghi có: 65.000.000
+Tháng 12/2025 - Tổng phát sinh ghi có: 90.000.000
+Tổng phát sinh ghi có 12 tháng: 978.000.000
+=== APP-00891
+--- APP-00891-D1
+BÁO CÁO KẾT QUẢ HOẠT ĐỘNG KINH DOANH
+Năm 2025
+Đơn vị tính: đồng
+01. Doanh thu bán hàng và cung cấp dịch vụ: 31.897.546.130
+02. Các khoản giảm trừ doanh thu: 261.546.130
+10. Doanh thu thuần về bán hàng và cung cấp dịch vụ: 31.636.000.000
+--- APP-00891-D2
+TỜ KHAI THUẾ GIÁ TRỊ GIA TĂNG (Mẫu số 01/GTGT)
+Kỳ tính thuế: năm 2025
+Đơn vị tính: đồng
+Quý 1 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 7.207.627.377
+Quý 2 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 7.412.685.642
+Quý 3 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 9.766.921.889
+Quý 4 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 7.298.765.092
+Tổng doanh thu chịu thuế cả năm: 31.686.000.000
+--- APP-00891-D3
+BẢNG KÊ HÓA ĐƠN ĐIỆN TỬ BÁN RA
+Kỳ: 01/2025 - 12/2025
+Đơn vị tính: đồng
+Số lượng hóa đơn: 1489
+Tổng giá trị hóa đơn chưa thuế: 31.686.000.000
+--- APP-00891-D4
+SAO KÊ TÀI KHOẢN THANH TOÁN
+Từ ngày 01/01/2025 đến ngày 31/12/2025
+Đơn vị tính: đồng
+Tháng 01/2025 - Tổng phát sinh ghi có: 1.748.000.000
+Tháng 02/2025 - Tổng phát sinh ghi có: 1.959.000.000
+Tháng 03/2025 - Tổng phát sinh ghi có: 2.301.000.000
+Tháng 04/2025 - Tổng phát sinh ghi có: 1.934.000.000
+Tháng 05/2025 - Tổng phát sinh ghi có: 2.371.000.000
+Tháng 06/2025 - Tổng phát sinh ghi có: 2.330.000.000
+Tháng 07/2025 - Tổng phát sinh ghi có: 2.435.000.000
+Tháng 08/2025 - Tổng phát sinh ghi có: 1.836.000.000
+Tháng 09/2025 - Tổng phát sinh ghi có: 2.119.000.000
+Tháng 10/2025 - Tổng phát sinh ghi có: 2.388.000.000
+Tháng 11/2025 - Tổng phát sinh ghi có: 2.036.000.000
+Tháng 12/2025 - Tổng phát sinh ghi có: 2.407.000.000
+Tổng phát sinh ghi có 12 tháng: 25.864.000.000
+=== APP-02596
+--- APP-02596-D1
+BAO CAO KET QUA HOAT DONG KINH DOANH
+Nam 2025
+Don vi tinh: nghin dong
+01. Doanh thu ban hang va cung cap dich vu: 1.093.988
+02. Cac khoan giam tru doanh thu: 3.988
+10. Doanh thu thuan ve ban hang va cung cap dich vu: 1.O90.000
+--- APP-02596-D2
+TỜ KHAI THUẾ GIÁ TRỊ GIA TĂNG (Mẫu số 01/GTGT)
+Kỳ tính thuế: năm 2025
+Đơn vị tính: đồng
+Quý 1 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 115.086.959
+Quý 2 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 138.135.937
+Quý 3 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 159.533.496
+Quý 4 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 128.243.608
+Tổng doanh thu chịu thuế cả năm: 541.000.000
+--- APP-02596-D3
+BẢNG KÊ HÓA ĐƠN ĐIỆN TỬ BÁN RA
+Kỳ: 01/2025 - 12/2025
+Đơn vị tính: đồng
+Số lượng hóa đơn: 293
+Tổng giá trị hóa đơn chưa thuế: 541.000.000
+--- APP-02596-D4
+SAO KÊ TÀI KHOẢN THANH TOÁN
+Từ ngày 01/01/2025 đến ngày 31/12/2025
+Đơn vị tính: đồng
+Tháng 01/2025 - Tổng phát sinh ghi có: 66.000.000
+Tháng 02/2025 - Tổng phát sinh ghi có: 83.000.000
+Tháng 03/2025 - Tổng phát sinh ghi có: 83.000.000
+Tháng 04/2025 - Tổng phát sinh ghi có: 92.000.000
+Tháng 05/2025 - Tổng phát sinh ghi có: 92.000.000
+Tháng 06/2025 - Tổng phát sinh ghi có: 74.000.000
+Tháng 07/2025 - Tổng phát sinh ghi có: 72.000.000
+Tháng 08/2025 - Tổng phát sinh ghi có: 89.000.000
+Tháng 09/2025 - Tổng phát sinh ghi có: 80.000.000
+Tháng 10/2025 - Tổng phát sinh ghi có: 73.000.000
+Tháng 11/2025 - Tổng phát sinh ghi có: 82.000.000
+Tháng 12/2025 - Tổng phát sinh ghi có: 74.000.000
+Tổng phát sinh ghi có 12 tháng: 960.000.000
+=== APP-01653
+--- APP-01653-D1
+BAO CAO KET QUA HOAT DONG KINH DOANH
+Nam 2025
+Don vi tinh: dong
+01. Doanh thu ban hang va cung cap dich vu: 52.930.127.285
+02. Cac khoan giam tru doanh thu: 209.129.285
+10. Doanh thu thuan ve ban hang va cung cap dich vu: 52.721.000.000
+--- APP-01653-D2
+TỜ KHAI THUẾ GIÁ TRỊ GIA TĂNG (Mẫu số 01/GTGT)
+Kỳ tính thuế: năm 2025
+Đơn vị tính: đồng
+Quý 1 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 12.967.626.554
+Quý 2 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 10.168.639.962
+Quý 3 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 12.064.576.019
+Quý 4 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 12.577.157.465
+Tổng doanh thu chịu thuế cả năm: 47.778.000.000
+--- APP-01653-D3
+BẢNG KÊ HÓA ĐƠN ĐIỆN TỬ BÁN RA
+Kỳ: 01/2025 - 12/2025
+Đơn vị tính: đồng
+Số lượng hóa đơn: 1523
+Tổng giá trị hóa đơn chưa thuế: 47.778.000.000
+--- APP-01653-D4
+SAO KÊ TÀI KHOẢN THANH TOÁN
+Từ ngày 01/01/2025 đến ngày 31/12/2025
+Đơn vị tính: đồng
+Tháng 01/2025 - Tổng phát sinh ghi có: 3.871.000.000
+Tháng 02/2025 - Tổng phát sinh ghi có: 3.798.000.000
+Tháng 03/2025 - Tổng phát sinh ghi có: 3.542.000.000
+Tháng 04/2025 - Tổng phát sinh ghi có: 3.301.000.000
+Tháng 05/2025 - Tổng phát sinh ghi có: 2.937.000.000
+Tháng 06/2025 - Tổng phát sinh ghi có: 3.750.000.000
+Tháng 07/2025 - Tổng phát sinh ghi có: 3.807.000.000
+Tháng 08/2025 - Tổng phát sinh ghi có: 3.792.000.000
+Tháng 09/2025 - Tổng phát sinh ghi có: 3.155.000.000
+Tháng 10/2025 - Tổng phát sinh ghi có: 4.347.000.000
+Tháng 11/2025 - Tổng phát sinh ghi có: 2.984.000.000
+Tháng 12/2025 - Tổng phát sinh ghi có: 3.270.000.000
+Tổng phát sinh ghi có 12 tháng: 42.554.000.000
+=== APP-03436
+--- APP-03436-D1
+BÁO CÁO KẾT QUẢ HOẠT ĐỘNG KINH DOANH
+Năm 2025
+Đơn vị tính: đồng
+01. Doanh thu bán hàng và cung cấp dịch vụ: 587.517.939
+02. Các khoản giảm trừ doanh thu: 2.517.939
+10. Doanh thu thuần về bán hàng và cung cấp dịch vụ: 585.000.000
+--- APP-03436-D2
+TỜ KHAI THUẾ GIÁ TRỊ GIA TĂNG (Mẫu số 01/GTGT)
+Kỳ tính thuế: năm 2025
+Đơn vị tính: đồng
+Quý 1 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 91.945.899
+Quý 2 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 105.088.578
+Quý 3 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 90.777.739
+Quý 4 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 88.187.784
+Tổng doanh thu chịu thuế cả năm: 376.000.000
+--- APP-03436-D3
+BẢNG KÊ HÓA ĐƠN ĐIỆN TỬ BÁN RA
+Kỳ: 01/2025 - 12/2025
+Đơn vị tính: đồng
+Số lượng hóa đơn: 3695
+Tổng giá trị hóa đơn chưa thuế: 376.000.000
+--- APP-03436-D4
+SAO KÊ TÀI KHOẢN THANH TOÁN
+Từ ngày 01/01/2025 đến ngày 31/12/2025
+Đơn vị tính: đồng
+Tháng 01/2025 - Tổng phát sinh ghi có: 18.000.000
+Tháng 02/2025 - Tổng phát sinh ghi có: 15.000.000
+Tháng 03/2025 - Tổng phát sinh ghi có: 14.000.000
+Tháng 04/2025 - Tổng phát sinh ghi có: 18.000.000
+Tháng 05/2025 - Tổng phát sinh ghi có: 18.000.000
+Tháng 06/2025 - Tổng phát sinh ghi có: 18.000.000
+Tháng 07/2025 - Tổng phát sinh ghi có: 15.000.000
+Tháng 08/2025 - Tổng phát sinh ghi có: 17.000.000
+Tháng 09/2025 - Tổng phát sinh ghi có: 14.000.000
+Tháng 10/2025 - Tổng phát sinh ghi có: 17.000.000
+Tháng 11/2025 - Tổng phát sinh ghi có: 15.000.000
+Tháng 12/2025 - Tổng phát sinh ghi có: 20.000.000
+Tổng phát sinh ghi có 12 tháng: 199.000.000
+=== APP-03725
+--- APP-03725-D1
+BAO CAO KET QUA HOAT DONG KINH DOANH
+Nam 2025
+Don vi tinh: dong
+01. Doanh thu ban hang va cung cap dich vu: 4.25l.817.656
+02. Cac khoan giam tru doanh thu: 17.817.656
+10. Doanh thu thuan ve ban hang va cung cap dich vu: 4.234.000.000
+--- APP-03725-D2
+TO KHAI THUE GIA TRI GIA TANG (Mau so 01/GTGT)
+Ky tinh thue: nam 2025
+Don vi tinh: dong
+Quy 1 - Doanh thu hang hoa, dich vu ban ra chiu thue: 910.667.614
+Quy 2 - Doanh thu hang hoa, dich vu ban ra chiu thue: 836.590.152
+Quy 3 - Doanh thu hang hoa, dich vu ban ra chiu thue: 711.664.815
+Quy 4 - Doanh thu hang hoa, dich vu ban ra chiu thue: 985.077.419
+Tong doanh thu chiu thue ca nam: 3.444.000.000
+--- APP-03725-D3
+BẢNG KÊ HÓA ĐƠN ĐIỆN TỬ BÁN RA
+Kỳ: 01/2025 - 12/2025
+Đơn vị tính: đồng
+Số lượng hóa đơn: 329
+Tổng giá trị hóa đơn chưa thuế: 3.444.000.000
+--- APP-03725-D4
+SAO KÊ TÀI KHOẢN THANH TOÁN
+Từ ngày 01/01/2025 đến ngày 31/12/2025
+Đơn vị tính: đồng
+Tháng 01/2025 - Tổng phát sinh ghi có: 238.000.000
+Tháng 02/2025 - Tổng phát sinh ghi có: 312.000.000
+Tháng 03/2025 - Tổng phát sinh ghi có: 313.000.000
+Tháng 04/2025 - Tổng phát sinh ghi có: 327.000.000
+Tháng 05/2025 - Tổng phát sinh ghi có: 250.000.000
+Tháng 06/2025 - Tổng phát sinh ghi có: 272.000.000
+Tháng 07/2025 - Tổng phát sinh ghi có: 251.000.000
+Tháng 08/2025 - Tổng phát sinh ghi có: 237.000.000
+Tháng 09/2025 - Tổng phát sinh ghi có: 236.000.000
+Tháng 10/2025 - Tổng phát sinh ghi có: 280.000.000
+Tháng 11/2025 - Tổng phát sinh ghi có: 219.000.000
+Tháng 12/2025 - Tổng phát sinh ghi có: 277.000.000
+Tổng phát sinh ghi có 12 tháng: 3.212.000.000
+=== APP-00615
+--- APP-00615-D1
+BÁO CÁO KẾT QUẢ HOẠT ĐỘNG KINH DOANH
+Năm 2025
+Đơn vị tính: đồng
+01. Doanh thu bán hàng và cung cấp dịch vụ: 2.446.428.109
+02. Các khoản giảm trừ doanh thu: 48.428.109
+10. Doanh thu thuần về bán hàng và cung cấp dịch vụ: 2.698.000.000
+--- APP-00615-D2
+TỜ KHAI THUẾ GIÁ TRỊ GIA TĂNG (Mẫu số 01/GTGT)
+Kỳ tính thuế: năm 2025
+Đơn vị tính: đồng
+Quý 1 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 657.970.986
+Quý 2 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 535.280.335
+Quý 3 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 697.089.901
+Quý 4 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 517.658.778
+Tổng doanh thu chịu thuế cả năm: 2.408.000.000
+--- APP-00615-D3
+BẢNG KÊ HÓA ĐƠN ĐIỆN TỬ BÁN RA
+Kỳ: O1/2025 - 12/2025
+Đơn vị tính: đồng
+Số lượng hóa đơn: 3534
+Tổng giá trị hóa đơn chưa thuế: 2.408.000.000
+--- APP-00615-D4
+SAO KÊ TÀI KHOẢN THANH TOÁN
+Từ ngày 01/01/2025 đến ngày 31/12/2025
+Đơn vị tính: đồng
+Tháng 01/2025 - Tổng phát sinh ghi có: 120.000.000
+Tháng 02/2025 - Tổng phát sinh ghi có: 120.000.000
+Tháng 03/2025 - Tổng phát sinh ghi có: 88.000.000
+Tháng 04/2025 - Tổng phát sinh ghi có: 114.000.000
+Tháng 05/2025 - Tổng phát sinh ghi có: 91.000.000
+Tháng 06/2025 - Tổng phát sinh ghi có: 96.000.000
+Tháng 07/2025 - Tổng phát sinh ghi có: 103.000.000
+Tháng 08/2025 - Tổng phát sinh ghi có: 91.000.000
+Tháng 09/2025 - Tổng phát sinh ghi có: 106.000.000
+Tháng 10/2025 - Tổng phát sinh ghi có: 114.000.000
+Tháng 11/2025 - Tổng phát sinh ghi có: 113.000.000
+Tháng 12/2025 - Tổng phát sinh ghi có: 121.000.000
+Tổng phát sinh ghi có 12 tháng: 1.277.000.000
+=== APP-02738
+--- APP-02738-D1
+BÁO CÁO KẾT QUẢ HOẠT ĐỘNG KINH DOANH
+Năm 2025
+Đơn vị tính: đồng
+01. Doanh thu bán hàng và cung cấp dịch vụ: 811.878.961
+02. Các khoản giảm trừ doanh thu: 8.878.961
+10. Doanh thu thuần về bán hàng và cung cấp dịch vụ: 803.000.000
+--- APP-02738-D2
+TỜ KHAI THUẾ GIÁ TRỊ GIA TĂNG (Mẫu số 01/GTGT)
+Kỳ tính thuế: năm 2025
+Đơn vị tính: đồng
+Quý 1 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 149.988.062
+Quý 2 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 162.615.369
+Quý 3 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 161.469.528
+Quý 4 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 131.927.041
+Tổng doanh thu chịu thuế cả năm: 606.000.000
+--- APP-02738-D3
+BẢNG KÊ HÓA ĐƠN ĐIỆN TỬ BÁN RA
+Kỳ: 01/2025 - 12/2025
+Đơn vị tính: đồng
+Số lượng hóa đơn: 1713
+Tổng giá trị hóa đơn chưa thuế: 606.000.000
+--- APP-02738-D4
+SAO KE TAI KHOAN THANH TOAN
+Tu ngay 01/01/2025 den ngay 31/12/2025
+Don vi tinh: dong
+Thang 01/2025 - Tong phat sinh ghi co: 50.000.000
+Thang 02/2025 - Tong phat sinh ghi co: 41.000.000
+Thang 03/2025 - Tong phat sinh ghi co: 52.000.000
+Thang 04/2025 - Tong phat sinh ghi co: 38.000.000
+Thang 05/2025 - Tong phat sinh ghi co: 52.000.000
+Thang 06/2025 - Tong phat sinh ghi co: 41.000.000
+Thang 07/2025 - Tong phat sinh ghi co: 55.000.000
+Thang 08/2025 - Tong phat sinh ghi co: 43.000.000
+Thang 09/2025 - Tong phat sinh ghi co: 48.000.000
+Thang 10/2025 - Tong phat sinh ghi co: 54.000.000
+Thang 11/2025 - Tong phat sinh ghi co: 39.000.000
+Thang 12/2025 - Tong phat sinh ghi co: 52.000.000
+Tong phat sinh ghi co 12 thang: 565.000.000
+=== APP-02854
+--- APP-02854-D1
+BÁO CÁO KẾT QUẢ HOẠT ĐỘNG KINH DOANH
+Năm 2025
+Đơn vị tính: đồng
+01. Doanh thu bán hàng và cung cấp dịch vụ: 434.103.979
+02. Các khoản giảm trừ doanh thu: 4.103.979
+10. Doanh thu thuần về bán hàng và cung cấp dịch vụ: 430.000.000
+--- APP-02854-D2
+TO KHAI THUE GIA TRI GIA TANG (Mau so 01/GTGT)
+Ky tinh thue: nam 2025
+Don vi tinh: dong
+Quy 1 - Doanh thu hang hoa, dich vu ban ra chiu thue: 43.321.988
+Quy 2 - Doanh thu hang hoa, dich vu ban ra chiu thue: 54.036.976
+Quy 3 - Doanh thu hang hoa, dich vu ban ra chiu thue: 57.370.038
+Quy 4 - Doanh thu hang hoa, dich vu ban ra chiu thue: 49.270.998
+Tong doanh thu chiu thue ca nam: 204.000.000
+--- APP-02854-D3
+BẢNG KÊ HÓA ĐƠN ĐIỆN TỬ BÁN RA
+Kỳ: 01/2025 - 12/2025
+Đơn vị tính: đồng
+Số lượng hóa đơn: 1554
+Tổng giá trị hóa đơn chưa thuế: 2O4.000.000
+--- APP-02854-D4
+SAO KÊ TÀI KHOẢN THANH TOÁN
+Từ ngày 01/01/2025 đến ngày 31/12/2025
+Đơn vị tính: đồng
+Tháng 01/2025 - Tổng phát sinh ghi có: 24.000.000
+Tháng 02/2025 - Tổng phát sinh ghi có: 20.000.000
+Tháng 03/2025 - Tổng phát sinh ghi có: 17.000.000
+Tháng 04/2025 - Tổng phát sinh ghi có: 20.000.000
+Tháng 05/2025 - Tổng phát sinh ghi có: 24.000.000
+Tháng 06/2025 - Tổng phát sinh ghi có: 24.000.000
+Tháng 07/2025 - Tổng phát sinh ghi có: 22.000.000
+Tháng 08/2025 - Tổng phát sinh ghi có: 25.000.000
+Tháng 09/2025 - Tổng phát sinh ghi có: 20.000.000
+Tháng 10/2025 - Tổng phát sinh ghi có: 24.000.000
+Tháng 11/2025 - Tổng phát sinh ghi có: 17.000.000
+Tháng 12/2025 - Tổng phát sinh ghi có: 22.000.000
+Tổng phát sinh ghi có 12 tháng: 259.000.000
+=== APP-01799
+--- APP-01799-D1
+BÁO CÁO KẾT QUẢ HOẠT ĐỘNG KINH DOANH
+Năm 2025
+Đơn vị tính: đồng
+01. Doanh thu bán hàng và cung cấp dịch vụ: 1.524.151.465
+02. Các khoản giảm trừ doanh thu: 15.151.465
+10. Doanh thu thuần về bán hàng và cung cấp dịch vụ: 1.509.000.000
+--- APP-01799-D2
+TỜ KHAI THUẾ GIÁ TRỊ GIA TĂNG (Mẫu số 01/GTGT)
+Kỳ tính thuế: năm 2025
+Đơn vị tính: đồng
+Quý 1 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 324.233.027
+Quý 2 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 263.047.008
+Quý 3 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 278.596.827
+Quý 4 - Doanh thu hàng hóa, dịch vụ bán ra chịu thuế: 335.123.138
+Tổng doanh thu chịu thuế cả năm: 1.231.000.000
+--- APP-01799-D3
+BẢNG KÊ HÓA ĐƠN ĐIỆN TỬ BÁN RA
+Kỳ: 01/2025 - 12/2025
+Đơn vị tính: đồng
+Số lượng hóa đơn: 3755
+Tổng giá trị hóa đơn chưa thuế: 1.231.000.000
+--- APP-01799-D4
+SAO KÊ TÀI KHOẢN THANH TOÁN
+Từ ngày 01/01/2025 đến ngày 31/12/2025
+Đơn vị tính: đồng
+Tháng 01/2025 - Tổng phát sinh ghi có: 48.000.000
+Tháng 02/2025 - Tổng phát sinh ghi có: 46.000.000
+Tháng 03/2025 - Tổng phát sinh ghi có: 40.000.000
+Tháng 04/2025 - Tổng phát sinh ghi có: 46.000.000
+Tháng 05/2025 - Tổng phát sinh ghi có: 41.000.000
+Tháng 06/2025 - Tổng phát sinh ghi có: 52.000.000
+Tháng 07/2025 - Tổng phát sinh ghi có: 35.000.000
+Tháng 08/2025 - Tổng phát sinh ghi có: 46.000.000
+Tháng 09/2025 - Tổng phát sinh ghi có: 53.000.000
+Tháng 10/2025 - Tổng phát sinh ghi có: 45.000.000
+Tháng 11/2025 - Tổng phát sinh ghi có: 52.000.000
+Tháng 12/2025 - Tổng phát sinh ghi có: 51.000.000
+Tổng phát sinh ghi có 12 tháng: 555.000.000

@@ -1,0 +1,12 @@
+{
+ "APP-01302": {"declared_revenue": [1347, "ok"], "vat_revenue": [459, "doubt: quarters sum is 200 dong off the total; total agrees with e-invoices"], "invoice_total": [459, "ok"], "inflows_12m": [978, "ok"]},
+ "APP-00891": {"declared_revenue": [31636, "ok"], "vat_revenue": [31686, "ok"], "invoice_total": [31686, "ok"], "inflows_12m": [25864, "ok"]},
+ "APP-02596": {"declared_revenue": [1090, "repaired: letter O read as 0, unit is thousand dong; confirmed by gross minus deductions"], "vat_revenue": [541, "ok"], "invoice_total": [541, "ok"], "inflows_12m": [960, "ok"]},
+ "APP-01653": {"declared_revenue": [52721, "doubt: gross minus deductions is 2,000 dong off the net line"], "vat_revenue": [47778, "ok"], "invoice_total": [47778, "ok"], "inflows_12m": [42554, "ok"]},
+ "APP-03436": {"declared_revenue": [585, "ok"], "vat_revenue": [376, "ok"], "invoice_total": [376, "ok"], "inflows_12m": [199, "ok"]},
+ "APP-03725": {"declared_revenue": [4234, "ok: letter l in the gross line read as 1, arithmetic then agrees"], "vat_revenue": [3444, "ok"], "invoice_total": [3444, "ok"], "inflows_12m": [3212, "ok"]},
+ "APP-00615": {"declared_revenue": [2398, "corrected: net line prints 2,698 but gross minus deductions is exactly 2,398"], "vat_revenue": [2408, "ok"], "invoice_total": [2408, "ok"], "inflows_12m": [1277, "ok"]},
+ "APP-02738": {"declared_revenue": [803, "ok"], "vat_revenue": [606, "ok"], "invoice_total": [606, "ok"], "inflows_12m": [565, "ok"]},
+ "APP-02854": {"declared_revenue": [430, "ok"], "vat_revenue": [204, "ok"], "invoice_total": [204, "repaired: letter O read as 0; confirmed by the VAT total"], "inflows_12m": [259, "ok"]},
+ "APP-01799": {"declared_revenue": [1509, "ok"], "vat_revenue": [1231, "doubt: quarters sum to 1,201 million, total says 1,231; total agrees with e-invoices"], "invoice_total": [1231, "ok"], "inflows_12m": [555, "ok"]}
+}

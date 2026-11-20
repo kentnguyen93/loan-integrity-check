@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "flag_cap": 0.05,
+  "priority_score": 0.80,
+  "seed": 20261120,
+  "n_applications": 4000,
+  "fraud_rate": 0.025,
+  "weights": {
+    "revenue_gap": 0.70,
+    "invoice_gap": 0.70,
+    "round_trip": 0.75,
+    "spike": 0.35,
+    "links": 0.80,
+    "suspect_list": 0.95,
+    "tenure": 0.15
+  },
+  "tolerance": {
+    "SME": {"revenue_gap_start": 1.4, "revenue_gap_full": 3.0, "invoice_gap_start": 1.4, "invoice_gap_full": 3.0},
+    "HOUSEHOLD": {"revenue_gap_start": 3.2, "revenue_gap_full": 6.0, "invoice_gap_start": 1.6, "invoice_gap_full": 3.5}
+  }
+}

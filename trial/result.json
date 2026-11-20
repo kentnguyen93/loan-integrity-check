@@ -1,0 +1,65 @@
+{
+ "fields": 40,
+ "claude_correct": 39,
+ "parser_correct": 40,
+ "parser_trusted": 34,
+ "parser_trusted_correct": 34,
+ "parser_straight_through_apps": 4,
+ "apps": 10,
+ "differences": [
+  {
+   "file": "APP-00615",
+   "field": "declared_revenue",
+   "truth": 2698,
+   "claude": 2398,
+   "claude_right": false,
+   "parser": 2698.0,
+   "parser_status": "NEEDS_REVIEW"
+  },
+  {
+   "file": "APP-02854",
+   "field": "invoice_total",
+   "truth": 204,
+   "claude": 204,
+   "claude_right": true,
+   "parser": 204.0,
+   "parser_status": "NEEDS_REVIEW"
+  },
+  {
+   "file": "APP-01799",
+   "field": "vat_revenue",
+   "truth": 1231,
+   "claude": 1231,
+   "claude_right": true,
+   "parser": 1231.0,
+   "parser_status": "NEEDS_REVIEW"
+  },
+  {
+   "file": "APP-01302",
+   "field": "vat_revenue",
+   "truth": 459,
+   "claude": 459,
+   "claude_right": true,
+   "parser": 459.0,
+   "parser_status": "NEEDS_REVIEW"
+  },
+  {
+   "file": "APP-01653",
+   "field": "declared_revenue",
+   "truth": 52721,
+   "claude": 52721,
+   "claude_right": true,
+   "parser": 52721.0,
+   "parser_status": "NEEDS_REVIEW"
+  },
+  {
+   "file": "APP-02596",
+   "field": "declared_revenue",
+   "truth": 1090,
+   "claude": 1090,
+   "claude_right": true,
+   "parser": 1090.0,
+   "parser_status": "NEEDS_REVIEW"
+  }
+ ]
+}

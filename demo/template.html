@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Application Integrity Check</title>
+<style>
+:root{
+  --bg:#f3f6f8;--panel:#fff;--ink:#17252b;--muted:#607078;--line:#dce4e8;
+  --accent:#087f6d;--accent-soft:#e4f4f0;--accent-ink:#fff;--navy:#122d35;
+  --warn:#99600a;--warn-bg:#fff3dd;--bad:#a43c32;--bad-bg:#fbeae7;
+  --good:#21734a;--good-bg:#e5f4eb;--shadow:0 8px 24px rgba(23,37,43,.055);
+  --sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#101719;--panel:#182225;--ink:#e7eff1;--muted:#9aabb1;--line:#2c3a3f;
+    --accent:#63c9b5;--accent-soft:#193a35;--accent-ink:#08251f;--navy:#0b1417;
+    --warn:#efbc68;--warn-bg:#3b301d;--bad:#f09a90;--bad-bg:#402724;
+    --good:#83d6a6;--good-bg:#1c3829;--shadow:none;color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5}
+button,input,select{font:inherit}
+button,select,input[type=search]{color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:8px 12px}
+button{cursor:pointer;font-weight:600}
+button:hover{border-color:var(--accent)}
+button:disabled{cursor:default;opacity:.45}
+button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible,tr:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding:24px 20px 48px;display:flex;flex-direction:column;gap:18px}
+.hero{background:var(--navy);color:#f4f9fa;border-radius:14px;padding:26px 28px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:700;color:#8fc9be;margin-bottom:8px}
+h1{font-size:27px;line-height:1.2;letter-spacing:-.025em;margin:0 0 8px}
+.hero p{color:#bfd0d4;max-width:72ch;margin:0}
+.hero .danger{background:transparent;color:#ffd6d0;border-color:#81534f;white-space:nowrap}
+.hero .danger:hover{border-color:#ffd6d0}
+.badges{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.badge{font-size:12px;padding:4px 9px;border:1px solid #355159;border-radius:999px;color:#d8e7e9}
+.badge.ai{color:#b9ebde;border-color:#397365}
+.run{margin-top:10px;color:#8fa9af;font:11px var(--mono);overflow-wrap:anywhere}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:18px;box-shadow:var(--shadow)}
+.section-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
+h2{font-size:15px;line-height:1.3;margin:0;letter-spacing:-.01em}
+h3{font-size:13px;margin:0}
+.muted,.note{color:var(--muted)}
+.note{font-size:12.5px;margin:10px 0 0}
+.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.flow{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.flow li{display:flex;gap:11px;padding:13px;background:var(--bg);border-radius:8px}
+.flow .num{font:600 12px var(--mono);color:var(--accent);padding-top:2px}
+.flow strong{display:block;font-size:13px;margin-bottom:2px}
+.flow span:last-child{color:var(--muted);font-size:12px}
+.step-head{display:flex;align-items:center;gap:11px;margin:10px 0 0}
+.step-head .step-num{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font:700 12px var(--mono)}
+.step-head h2{font-size:17px}
+.step-head p{margin:1px 0 0;font-size:12.5px;color:var(--muted)}
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}
+.stat{padding:13px 14px;background:var(--bg);border:1px solid transparent;border-radius:8px}
+.stat .n{font:600 25px/1.15 var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+.stat .l{color:var(--muted);font-size:12px;margin-top:5px}
+.controls{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:15px;padding-top:15px;border-top:1px solid var(--line)}
+.controls label{font-size:13px}
+input[type=range]{accent-color:var(--accent);width:180px;vertical-align:middle}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button.subtle{font-size:12px;padding:6px 9px}
+.check-label{display:flex;align-items:center;gap:7px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:18px;align-items:start}
+.scroll{max-height:460px;overflow:auto;border:1px solid var(--line);border-radius:8px}
+.intake-scroll{max-height:340px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{position:sticky;top:0;z-index:1;background:var(--panel);text-align:left;font-weight:600;color:var(--muted);border-bottom:1px solid var(--line);padding:10px 9px;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+td{padding:10px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--bg)}
+tbody tr.sel{box-shadow:inset 3px 0 0 var(--accent);background:var(--accent-soft)}
+.pill{display:inline-block;font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.p-pri{background:var(--bad-bg);color:var(--bad)}.p-rev{background:var(--warn-bg);color:var(--warn)}.p-done{background:var(--good-bg);color:var(--good)}
+.queue-tools{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.queue-tools input{width:100%;min-width:0}
+.queue-tools span{font-size:11px;color:var(--muted);white-space:nowrap}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin:0 0 17px}
+.kv div{padding-bottom:8px;border-bottom:1px solid var(--line)}
+.kv dt{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.kv dd{margin:3px 0 0;font:500 13px var(--mono);font-variant-numeric:tabular-nums}
+.reason{border-left:3px solid var(--warn);padding:9px 11px;margin:0 0 9px;background:var(--bg);border-radius:0 7px 7px 0}
+.reason.strong{border-left-color:var(--bad)}
+.reason .ev{font:11.5px var(--mono);color:var(--muted);overflow-wrap:anywhere;margin-top:3px}
+.bar{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:7px}
+.bar i{display:block;height:100%;background:var(--accent)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.err{color:var(--bad);font-size:12px;margin-top:8px}
+.off{background:var(--bad-bg);color:var(--bad);border:1px solid color-mix(in srgb,var(--bad) 30%,transparent);padding:13px 15px;border-radius:9px;font-weight:600}
+.truth{font-size:12px;color:var(--muted);margin:10px 0 0}
+.docs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:13px}
+.doc{border:1px solid var(--line);border-radius:8px;background:var(--bg);overflow:hidden}
+.doc summary{cursor:pointer;padding:11px 12px;display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:600}
+.doc summary::marker{color:var(--accent)}
+.doc-meta{font:10px var(--mono);color:var(--muted);white-space:nowrap}
+.doc pre{font:11px/1.55 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;margin:0;padding:0 12px 12px;color:var(--ink)}
+.doc .dmg{font-size:11px;color:var(--warn);padding:0 12px 8px}
+.decision{padding:11px 12px;background:var(--good-bg);border-radius:8px;color:var(--good);font-size:13px}
+.log{font:11.5px/1.6 var(--mono);max-height:210px;overflow:auto;white-space:pre-wrap;color:var(--muted);margin:0;background:var(--bg);padding:12px;border-radius:8px}
+.footer{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:11px;padding:0 3px}
+.empty{padding:20px;color:var(--muted);text-align:center}
+@media (max-width:850px){.grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.docs{grid-template-columns:1fr}.hero{flex-direction:column}.hero .danger{align-self:flex-start}.footer{flex-direction:column}}
+@media (max-width:520px){.wrap{padding:12px}.hero,.panel{padding:15px}.kv{grid-template-columns:1fr}.strip{grid-template-columns:repeat(2,1fr)}h1{font-size:23px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Credit operations · pre-disbursement review</div>
+      <h1>Application Integrity Check</h1>
+      <p>Find inconsistencies between a business loan application, its supporting documents, and observed account activity. The system supplies evidence; an investigator makes the decision.</p>
+      <div class="badges">
+        <span class="badge">Deterministic rules and arithmetic</span>
+        <span class="badge ai">No AI call in the core workflow</span>
+        <span class="badge">Synthetic evaluation data</span>
+      </div>
+      <div class="run">Run <span id="run-id"></span></div>
+    </div>
+    <button id="kill" class="danger" type="button">Switch the check off</button>
+  </header>
+
+  <section class="panel">
+    <div class="section-head"><h2>How the review works</h2><span class="kicker">Human decision required</span></div>
+    <ol class="flow">
+      <li><span class="num">01</span><div><strong>Read and validate</strong><span>Parse four document types and check arithmetic and cross-document consistency.</span></div></li>
+      <li><span class="num">02</span><div><strong>Cross-check and score</strong><span>Apply seven explainable checks and combine their weighted strengths.</span></div></li>
+      <li><span class="num">03</span><div><strong>Investigate and decide</strong><span>Review the evidence, record a reason, and escalate, clear, or request documents.</span></div></li>
+    </ol>
+  </section>
+
+  <div class="step-head"><span class="step-num">01</span><div><h2>Document intake</h2><p>Extract, validate, and route incomplete or inconsistent files to a person.</p></div></div>
+  <section class="panel">
+    <div class="section-head"><h2>Evaluation: 1,000 applications · 4,000 synthetic documents</h2><span class="kicker">Parser, not AI</span></div>
+    <div class="strip">
+      <div class="stat"><div class="n" id="i-trust">0%</div><div class="l">figures trusted after validation</div></div>
+      <div class="stat"><div class="n" id="i-acc">0%</div><div class="l">trusted figures correct</div></div>
+      <div class="stat"><div class="n" id="i-stp">0</div><div class="l">applications straight through</div></div>
+      <div class="stat"><div class="n" id="i-rev">0</div><div class="l">applications sent to a person</div></div>
+    </div>
+    <p class="truth">This tests validation logic on text with simulated scan damage—not OCR on real scans. The interface is English; source documents remain Vietnamese to preserve the extraction test.</p>
+  </section>
+  <div class="grid">
+    <section class="panel">
+      <div class="section-head"><h2>Sample applications</h2><span class="kicker">Select a file</span></div>
+      <div class="scroll intake-scroll"><table><thead><tr><th>File</th><th>Docs</th><th>Status</th></tr></thead><tbody id="ilist"></tbody></table></div>
+    </section>
+    <section class="panel" id="ipack"></section>
+  </div>
+  <section class="panel" id="idocs"></section>
+
+  <div class="step-head"><span class="step-num">02</span><div><h2>Integrity review</h2><p>Inspect the held-out evaluation and work through the evidence queue.</p></div></div>
+  <section class="panel">
+    <div class="section-head"><h2>Evaluation: 2,000 held-out applications</h2><span class="kicker">Seven deterministic checks</span></div>
+    <div class="strip">
+      <div class="stat"><div class="n" id="s-flag">0</div><div class="l">files flagged for review</div></div>
+      <div class="stat"><div class="n" id="s-catchv">0%</div><div class="l">fraudulent limits caught, by value</div></div>
+      <div class="stat"><div class="n" id="s-catchn">0%</div><div class="l">fraud cases caught, by count</div></div>
+      <div class="stat"><div class="n" id="s-prec">0%</div><div class="l">flags that are actual fraud</div></div>
+      <div class="stat"><div class="n" id="s-miss">0</div><div class="l">fraud cases missed</div></div>
+    </div>
+    <div class="controls">
+      <label for="cap">Interactive review share: <strong id="capv">Calibrated</strong></label>
+      <input id="cap" type="range" min="1" max="12" step="1" value="5">
+      <button id="reset" class="subtle" type="button">Use calibrated threshold</button>
+      <label class="check-label"><input id="truth" type="checkbox"> Show evaluation answers and simulated damage</label>
+    </div>
+    <p class="truth">The initial view uses the pipeline’s calibrated threshold. Moving the slider creates a separate what-if threshold on the displayed held-out files. Evaluation labels are synthetic and do not predict real-world performance.</p>
+  </section>
+
+  <div id="offmsg" class="off" hidden>The check is switched off. Every file goes to the normal manual process, and the switch is recorded in the audit log.</div>
+  <div class="grid" id="desk">
+    <section class="panel">
+      <div class="section-head"><h2>Review queue</h2><span class="kicker">Highest score first</span></div>
+      <div class="queue-tools"><input id="query" type="search" placeholder="Find an application ID" aria-label="Find an application ID"><span id="queue-count"></span></div>
+      <div class="scroll"><table><thead><tr><th>File</th><th>Segment</th><th class="num">Limit, VND m</th><th class="num">Score</th><th>Status</th></tr></thead><tbody id="queue"></tbody></table></div>
+    </section>
+    <section class="panel" id="pack"></section>
+  </div>
+
+  <section class="panel">
+    <div class="section-head"><h2>Session audit log</h2><span class="kicker">Decisions are session-only</span></div>
+    <pre class="log" id="log"></pre>
+  </section>
+  <footer class="footer"><span>Prototype only · no connection to bank, credit bureau, tax, or identity systems</span><span>Scores support review; they never automatically decline an application.</span></footer>
+</div>
+
+<script>
+const DATA = /*DATA*/null;
+const all = DATA.all, detail = Object.fromEntries(DATA.detail.map(r => [r.id, r]));
+const state = {cap:null,on:true,sel:null,decisions:{},log:[],isel:null,checked:{},query:""};
+const $ = id => document.getElementById(id);
+const fmt = n => Number(n).toLocaleString("en-US");
+const pct = x => (x * 100).toFixed(1).replace(/\.0$/, "") + "%";
+
+function log(actor, action, file, note){
+  const line = new Date().toISOString().slice(0,19) + "Z  " + actor.padEnd(13) + " " + action.padEnd(30) + " " + (file || "").padEnd(11) + " " + (note || "");
+  state.log.unshift(line);
+  $("log").textContent = state.log.join("\n");
+}
+function threshold(){
+  if (state.cap === null) return DATA.report.threshold;
+  const ranked = all.map(r => r[1]).sort((a,b) => b - a);
+  return Math.max(ranked[Math.max(1, Math.floor(ranked.length * state.cap / 100)) - 1], 0.0001);
+}
+function render(){
+  const thr = threshold();
+  const flagged = state.on ? all.filter(r => r[1] >= thr) : [];
+  const fraud = all.filter(r => r[2]);
+  const caught = flagged.filter(r => r[2]);
+  const val = xs => xs.reduce((s,r) => s + r[3],0);
+  $("s-flag").textContent = fmt(flagged.length);
+  $("s-catchv").textContent = pct(val(caught) / val(fraud));
+  $("s-catchn").textContent = pct(caught.length / fraud.length);
+  $("s-prec").textContent = flagged.length ? pct(caught.length / flagged.length) : "0%";
+  $("s-miss").textContent = fraud.length - caught.length;
+  $("cap").value = state.cap === null ? Math.round(DATA.report.flag_cap * 100) : state.cap;
+  $("capv").textContent = state.cap === null ? "Calibrated · " + Math.round(DATA.report.flag_cap * 100) + "% target" : state.cap + "% what-if";
+  $("reset").disabled = state.cap === null;
+  $("offmsg").hidden = state.on;
+  $("desk").hidden = !state.on;
+  $("kill").textContent = state.on ? "Switch the check off" : "Switch the check on";
+  const rows = flagged.sort((a,b) => b[1] - a[1]).filter(r => detail[r[0]] && r[0].includes(state.query));
+  if (!state.sel || !rows.some(r => r[0] === state.sel)) state.sel = rows.length ? rows[0][0] : null;
+  $("queue-count").textContent = rows.length + " shown · " + flagged.length + " flagged";
+  $("queue").innerHTML = rows.map(r => {
+    const d = detail[r[0]], dec = state.decisions[r[0]];
+    const pill = dec ? '<span class="pill p-done">' + dec.label + '</span>' :
+      (r[1] >= Math.max(thr,DATA.priority) ? '<span class="pill p-pri">Priority</span>' : '<span class="pill p-rev">Review</span>');
+    return '<tr tabindex="0" data-id="' + r[0] + '" class="' + (r[0] === state.sel ? "sel" : "") + '"><td>' + r[0] + '</td><td>' +
+      (d.segment === "SME" ? "SME" : "Household") + '</td><td class="num">' + fmt(d.requested_limit) + '</td><td class="num">' + r[1].toFixed(2) + '</td><td>' + pill + '</td></tr>';
+  }).join("");
+  renderPack();
+}
+function renderPack(){
+  const d = detail[state.sel];
+  if (!d){ $("pack").innerHTML = '<h2>Evidence pack</h2><p class="empty">No application matches this view.</p>'; return; }
+  const dec = state.decisions[d.id];
+  const truth = $("truth").checked ? '<p class="truth">Known answer: ' + (d.is_fraud ? "fraud · " + d.scheme.replace(/_/g," ") : "honest applicant · false alarm") + '</p>' : "";
+  $("pack").innerHTML = '<div class="section-head"><h2>Evidence pack: ' + d.id + '</h2><span class="kicker">Score ' + d.score.toFixed(2) + '</span></div>' +
+    '<dl class="kv"><div><dt>Segment</dt><dd>' + d.segment + '</dd></div><div><dt>Requested limit</dt><dd>VND ' + fmt(d.requested_limit) + ' m</dd></div>' +
+    '<div><dt>Declared revenue</dt><dd>VND ' + fmt(d.declared_revenue) + ' m</dd></div><div><dt>Invoices issued</dt><dd>VND ' + fmt(d.invoice_total) + ' m</dd></div>' +
+    '<div><dt>Money seen in account</dt><dd>VND ' + fmt(d.inflows_12m) + ' m</dd></div><div><dt>Account age</dt><dd>' + d.tenure_months + ' months</dd></div></dl>' +
+    '<div class="section-head"><h2>Why it was flagged</h2><span class="kicker">Evidence and contribution</span></div>' +
+    d.reasons.map(r => '<div class="reason ' + (r.contribution >= .5 ? "strong" : "") + '"><div>' + r.reason + '</div>' +
+      '<div class="ev">' + r.check + " · " + JSON.stringify(r.evidence).replace(/[{}"]/g,"").replace(/,/g,", ") + '</div>' +
+      '<div class="bar"><i style="width:' + Math.round(r.contribution * 100) + '%"></i></div></div>').join("") + truth +
+    (dec ? '<p class="decision"><strong>' + dec.label + '</strong><br>Reason: ' + dec.reason + '</p>' :
+    '<div class="actions"><label for="why">Decision reason</label><select id="why"><option value="">Choose a reason</option>' +
+      '<option>Evidence confirms mismatch</option><option>Linked to known case</option><option>Explained by cash sales</option>' +
+      '<option>Explained by seasonality</option><option>Legitimate group structure</option><option>Need source documents</option></select>' +
+      '<button class="primary" type="button" data-act="Escalated as suspected fraud">Escalate</button>' +
+      '<button type="button" data-act="Cleared by investigator">Clear</button>' +
+      '<button type="button" data-act="Documents requested">Ask for documents</button></div><div class="err" id="err"></div>');
+}
+$("queue").addEventListener("click",e => { const tr=e.target.closest("tr"); if(tr){state.sel=tr.dataset.id;render();} });
+$("queue").addEventListener("keydown",e => { const tr=e.target.closest("tr"); if(e.key === "Enter" && tr){state.sel=tr.dataset.id;render();} });
+$("pack").addEventListener("click",e => {
+  const act=e.target.dataset.act;if(!act)return;
+  const why=$("why").value;
+  if(!why){$("err").textContent="Choose a reason first. Every decision is logged with one.";return;}
+  state.decisions[state.sel]={label:act,reason:why};
+  log("investigator",act,state.sel,"reason: "+why+"; score "+detail[state.sel].score.toFixed(2));
+  render();
+});
+$("cap").addEventListener("input",e => {state.cap=+e.target.value;render();});
+$("cap").addEventListener("change",e => log("admin","What-if review share set","",e.target.value+"% of files, threshold "+threshold().toFixed(3)));
+$("reset").addEventListener("click",() => {state.cap=null;log("admin","Calibrated threshold restored","",DATA.report.threshold.toFixed(4));render();});
+$("query").addEventListener("input",e => {state.query=e.target.value.trim().toUpperCase();render();});
+$("kill").addEventListener("click",() => {state.on=!state.on;log("admin",state.on?"Check switched ON":"Check switched OFF","",state.on?"":"all files to manual process");render();});
+const esc = t => String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const FIELD = {declared_revenue:"Declared revenue",vat_revenue:"Revenue declared for VAT",invoice_total:"E-invoices issued",inflows_12m:"Bank inflows, 12 months"};
+const DOCNAME = {income_statement:"Income statement",vat_declaration:"VAT declaration",einvoice_listing:"E-invoice listing",bank_statement:"Bank statement",unknown:"Not recognised"};
+const DAMAGE = {diacritics_lost:"diacritics lost",lookalike_letter:"digit read as a letter",digit_misread:"digit misread",line_dropped:"line missing"};
+function renderIntake(){
+  const R=DATA.intake.report,S=DATA.intake.samples;
+  $("i-trust").textContent=(R.fields_trusted_share*100).toFixed(1)+"%";
+  $("i-acc").textContent=(R.accuracy_of_trusted_fields*100).toFixed(0)+"%";
+  $("i-stp").textContent=fmt(R.applications_straight_through);
+  $("i-rev").textContent=fmt(R.applications_to_document_review);
+  if(!state.isel)state.isel=S[0].id;
+  $("ilist").innerHTML=S.map(a => {
+    const pill=state.checked[a.id]?'<span class="pill p-done">Checked by a person</span>':a.ready?'<span class="pill p-done">Straight through</span>':'<span class="pill p-rev">Document review</span>';
+    return '<tr tabindex="0" data-id="'+a.id+'" class="'+(a.id===state.isel?"sel":"")+'"><td>'+a.id+'</td><td>'+a.docs.length+'</td><td>'+pill+'</td></tr>';
+  }).join("");
+  const a=S.find(x => x.id===state.isel);
+  $("ipack").innerHTML='<div class="section-head"><h2>Master data: '+a.id+'</h2><span class="kicker">Source-linked values</span></div><div class="scroll" style="max-height:none;border:0"><table><thead><tr><th>Figure</th><th class="num">VND m</th><th>Source</th><th class="num">Conf.</th><th>Status</th></tr></thead><tbody>'+
+    Object.keys(FIELD).map(k => {const c=a.master[k];
+      const pill=c.status==="VALIDATED"?'<span class="pill p-done">Validated</span>':c.status==="MISSING"?'<span class="pill p-pri">Missing</span>':'<span class="pill p-rev">Needs review</span>';
+      return '<tr style="cursor:default"><td>'+FIELD[k]+(c.note?'<div class="note">'+esc(c.note)+'</div>':'')+'</td><td class="num">'+(c.value===null?"":fmt(c.value))+'</td><td class="note">'+(c.source_doc?c.source_doc.split("-").pop()+(c.line?", line "+c.line:""):"")+'</td><td class="num">'+c.confidence.toFixed(2)+'</td><td>'+pill+'</td></tr>';}).join("")+
+    '</tbody></table></div>'+(a.ready?'<p class="note">Every figure passed its checks. The file proceeds without manual document review.</p>':state.checked[a.id]?'<p class="decision">Figures checked against source documents and logged.</p>':'<div class="actions"><button class="primary" type="button" id="ichk">Mark figures checked</button></div><p class="note">The file waits until a person confirms or corrects the figures.</p>');
+  $("idocs").innerHTML='<div class="section-head"><h2>Source documents: '+a.id+'</h2><span class="kicker">Expand to inspect</span></div><div class="docs">'+a.docs.map(d =>
+    '<details class="doc"><summary><span>'+d.doc_id.split("-").pop()+' · '+DOCNAME[d.label]+'</span><span class="doc-meta">'+d.text.length+' lines</span></summary>'+
+    ($("truth").checked&&d.noise.length?'<div class="dmg">Simulated damage: '+d.noise.map(n => DAMAGE[n]).join(", ")+'</div>':'')+
+    '<pre>'+esc(d.text.join("\n"))+'</pre></details>').join("")+'</div>';
+}
+$("ilist").addEventListener("click",e => {const tr=e.target.closest("tr");if(tr){state.isel=tr.dataset.id;renderIntake();}});
+$("ilist").addEventListener("keydown",e => {const tr=e.target.closest("tr");if(e.key==="Enter"&&tr){state.isel=tr.dataset.id;renderIntake();}});
+$("ipack").addEventListener("click",e => {if(e.target.id==="ichk"){state.checked[state.isel]=true;log("doc reviewer","Figures checked",state.isel,"against source documents");renderIntake();}});
+$("truth").addEventListener("change",() => {renderPack();renderIntake();});
+$("run-id").textContent=DATA.run_id;
+renderIntake();
+log("system","Run loaded","",DATA.run_id+", "+all.length+" files scored");
+render();
+</script>
+</body>
+</html>
