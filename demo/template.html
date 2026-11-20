@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-/*CSP_HASH*/'; style-src 'unsafe-inline'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
 <title>Application Integrity Check</title>
 <style>
 :root{
@@ -194,11 +196,12 @@ tbody tr.sel{box-shadow:inset 3px 0 0 var(--accent);background:var(--accent-soft
 
 <script>
 const DATA = /*DATA*/null;
-const all = DATA.all, detail = Object.fromEntries(DATA.detail.map(r => [r.id, r]));
-const state = {cap:null,on:true,sel:null,decisions:{},log:[],isel:null,checked:{},query:""};
+const all = DATA.all, detail = Object.assign(Object.create(null), Object.fromEntries(DATA.detail.map(r => [r.id, r])));
+const state = {cap:null,on:true,sel:null,decisions:Object.create(null),log:[],isel:null,checked:Object.create(null),query:""};
 const $ = id => document.getElementById(id);
 const fmt = n => Number(n).toLocaleString("en-US");
 const pct = x => (x * 100).toFixed(1).replace(/\.0$/, "") + "%";
+const esc = t => String(t).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
 function log(actor, action, file, note){
   const line = new Date().toISOString().slice(0,19) + "Z  " + actor.padEnd(13) + " " + action.padEnd(30) + " " + (file || "").padEnd(11) + " " + (note || "");
@@ -231,10 +234,10 @@ function render(){
   if (!state.sel || !rows.some(r => r[0] === state.sel)) state.sel = rows.length ? rows[0][0] : null;
   $("queue-count").textContent = rows.length + " shown · " + flagged.length + " flagged";
   $("queue").innerHTML = rows.map(r => {
-    const d = detail[r[0]], dec = state.decisions[r[0]];
-    const pill = dec ? '<span class="pill p-done">' + dec.label + '</span>' :
+    const d = detail[r[0]], dec = state.decisions[r[0]], id = esc(r[0]);
+    const pill = dec ? '<span class="pill p-done">' + esc(dec.label) + '</span>' :
       (r[1] >= Math.max(thr,DATA.priority) ? '<span class="pill p-pri">Priority</span>' : '<span class="pill p-rev">Review</span>');
-    return '<tr tabindex="0" data-id="' + r[0] + '" class="' + (r[0] === state.sel ? "sel" : "") + '"><td>' + r[0] + '</td><td>' +
+    return '<tr tabindex="0" data-id="' + id + '" class="' + (r[0] === state.sel ? "sel" : "") + '"><td>' + id + '</td><td>' +
       (d.segment === "SME" ? "SME" : "Household") + '</td><td class="num">' + fmt(d.requested_limit) + '</td><td class="num">' + r[1].toFixed(2) + '</td><td>' + pill + '</td></tr>';
   }).join("");
   renderPack();
@@ -243,16 +246,16 @@ function renderPack(){
   const d = detail[state.sel];
   if (!d){ $("pack").innerHTML = '<h2>Evidence pack</h2><p class="empty">No application matches this view.</p>'; return; }
   const dec = state.decisions[d.id];
-  const truth = $("truth").checked ? '<p class="truth">Known answer: ' + (d.is_fraud ? "fraud · " + d.scheme.replace(/_/g," ") : "honest applicant · false alarm") + '</p>' : "";
-  $("pack").innerHTML = '<div class="section-head"><h2>Evidence pack: ' + d.id + '</h2><span class="kicker">Score ' + d.score.toFixed(2) + '</span></div>' +
-    '<dl class="kv"><div><dt>Segment</dt><dd>' + d.segment + '</dd></div><div><dt>Requested limit</dt><dd>VND ' + fmt(d.requested_limit) + ' m</dd></div>' +
+  const truth = $("truth").checked ? '<p class="truth">Known answer: ' + (d.is_fraud ? "fraud · " + esc(d.scheme.replace(/_/g," ")) : "honest applicant · false alarm") + '</p>' : "";
+  $("pack").innerHTML = '<div class="section-head"><h2>Evidence pack: ' + esc(d.id) + '</h2><span class="kicker">Score ' + d.score.toFixed(2) + '</span></div>' +
+    '<dl class="kv"><div><dt>Segment</dt><dd>' + esc(d.segment) + '</dd></div><div><dt>Requested limit</dt><dd>VND ' + fmt(d.requested_limit) + ' m</dd></div>' +
     '<div><dt>Declared revenue</dt><dd>VND ' + fmt(d.declared_revenue) + ' m</dd></div><div><dt>Invoices issued</dt><dd>VND ' + fmt(d.invoice_total) + ' m</dd></div>' +
-    '<div><dt>Money seen in account</dt><dd>VND ' + fmt(d.inflows_12m) + ' m</dd></div><div><dt>Account age</dt><dd>' + d.tenure_months + ' months</dd></div></dl>' +
+    '<div><dt>Money seen in account</dt><dd>VND ' + fmt(d.inflows_12m) + ' m</dd></div><div><dt>Account age</dt><dd>' + esc(d.tenure_months) + ' months</dd></div></dl>' +
     '<div class="section-head"><h2>Why it was flagged</h2><span class="kicker">Evidence and contribution</span></div>' +
-    d.reasons.map(r => '<div class="reason ' + (r.contribution >= .5 ? "strong" : "") + '"><div>' + r.reason + '</div>' +
-      '<div class="ev">' + r.check + " · " + JSON.stringify(r.evidence).replace(/[{}"]/g,"").replace(/,/g,", ") + '</div>' +
+    d.reasons.map(r => '<div class="reason ' + (r.contribution >= .5 ? "strong" : "") + '"><div>' + esc(r.reason) + '</div>' +
+      '<div class="ev">' + esc(r.check + " · " + JSON.stringify(r.evidence).replace(/[{}"]/g,"").replace(/,/g,", ")) + '</div>' +
       '<div class="bar"><i style="width:' + Math.round(r.contribution * 100) + '%"></i></div></div>').join("") + truth +
-    (dec ? '<p class="decision"><strong>' + dec.label + '</strong><br>Reason: ' + dec.reason + '</p>' :
+    (dec ? '<p class="decision"><strong>' + esc(dec.label) + '</strong><br>Reason: ' + esc(dec.reason) + '</p>' :
     '<div class="actions"><label for="why">Decision reason</label><select id="why"><option value="">Choose a reason</option>' +
       '<option>Evidence confirms mismatch</option><option>Linked to known case</option><option>Explained by cash sales</option>' +
       '<option>Explained by seasonality</option><option>Legitimate group structure</option><option>Need source documents</option></select>' +
@@ -275,7 +278,6 @@ $("cap").addEventListener("change",e => log("admin","What-if review share set","
 $("reset").addEventListener("click",() => {state.cap=null;log("admin","Calibrated threshold restored","",DATA.report.threshold.toFixed(4));render();});
 $("query").addEventListener("input",e => {state.query=e.target.value.trim().toUpperCase();render();});
 $("kill").addEventListener("click",() => {state.on=!state.on;log("admin",state.on?"Check switched ON":"Check switched OFF","",state.on?"":"all files to manual process");render();});
-const esc = t => String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const FIELD = {declared_revenue:"Declared revenue",vat_revenue:"Revenue declared for VAT",invoice_total:"E-invoices issued",inflows_12m:"Bank inflows, 12 months"};
 const DOCNAME = {income_statement:"Income statement",vat_declaration:"VAT declaration",einvoice_listing:"E-invoice listing",bank_statement:"Bank statement",unknown:"Not recognised"};
 const DAMAGE = {diacritics_lost:"diacritics lost",lookalike_letter:"digit read as a letter",digit_misread:"digit misread",line_dropped:"line missing"};
@@ -287,18 +289,19 @@ function renderIntake(){
   $("i-rev").textContent=fmt(R.applications_to_document_review);
   if(!state.isel)state.isel=S[0].id;
   $("ilist").innerHTML=S.map(a => {
+    const id=esc(a.id);
     const pill=state.checked[a.id]?'<span class="pill p-done">Checked by a person</span>':a.ready?'<span class="pill p-done">Straight through</span>':'<span class="pill p-rev">Document review</span>';
-    return '<tr tabindex="0" data-id="'+a.id+'" class="'+(a.id===state.isel?"sel":"")+'"><td>'+a.id+'</td><td>'+a.docs.length+'</td><td>'+pill+'</td></tr>';
+    return '<tr tabindex="0" data-id="'+id+'" class="'+(a.id===state.isel?"sel":"")+'"><td>'+id+'</td><td>'+a.docs.length+'</td><td>'+pill+'</td></tr>';
   }).join("");
   const a=S.find(x => x.id===state.isel);
-  $("ipack").innerHTML='<div class="section-head"><h2>Master data: '+a.id+'</h2><span class="kicker">Source-linked values</span></div><div class="scroll" style="max-height:none;border:0"><table><thead><tr><th>Figure</th><th class="num">VND m</th><th>Source</th><th class="num">Conf.</th><th>Status</th></tr></thead><tbody>'+
+  $("ipack").innerHTML='<div class="section-head"><h2>Master data: '+esc(a.id)+'</h2><span class="kicker">Source-linked values</span></div><div class="scroll" style="max-height:none;border:0"><table><thead><tr><th>Figure</th><th class="num">VND m</th><th>Source</th><th class="num">Conf.</th><th>Status</th></tr></thead><tbody>'+
     Object.keys(FIELD).map(k => {const c=a.master[k];
       const pill=c.status==="VALIDATED"?'<span class="pill p-done">Validated</span>':c.status==="MISSING"?'<span class="pill p-pri">Missing</span>':'<span class="pill p-rev">Needs review</span>';
-      return '<tr style="cursor:default"><td>'+FIELD[k]+(c.note?'<div class="note">'+esc(c.note)+'</div>':'')+'</td><td class="num">'+(c.value===null?"":fmt(c.value))+'</td><td class="note">'+(c.source_doc?c.source_doc.split("-").pop()+(c.line?", line "+c.line:""):"")+'</td><td class="num">'+c.confidence.toFixed(2)+'</td><td>'+pill+'</td></tr>';}).join("")+
+      return '<tr style="cursor:default"><td>'+FIELD[k]+(c.note?'<div class="note">'+esc(c.note)+'</div>':'')+'</td><td class="num">'+(c.value===null?"":fmt(c.value))+'</td><td class="note">'+(c.source_doc?esc(c.source_doc.split("-").pop()+(c.line?", line "+c.line:"")):"")+'</td><td class="num">'+c.confidence.toFixed(2)+'</td><td>'+pill+'</td></tr>';}).join("")+
     '</tbody></table></div>'+(a.ready?'<p class="note">Every figure passed its checks. The file proceeds without manual document review.</p>':state.checked[a.id]?'<p class="decision">Figures checked against source documents and logged.</p>':'<div class="actions"><button class="primary" type="button" id="ichk">Mark figures checked</button></div><p class="note">The file waits until a person confirms or corrects the figures.</p>');
-  $("idocs").innerHTML='<div class="section-head"><h2>Source documents: '+a.id+'</h2><span class="kicker">Expand to inspect</span></div><div class="docs">'+a.docs.map(d =>
-    '<details class="doc"><summary><span>'+d.doc_id.split("-").pop()+' · '+DOCNAME[d.label]+'</span><span class="doc-meta">'+d.text.length+' lines</span></summary>'+
-    ($("truth").checked&&d.noise.length?'<div class="dmg">Simulated damage: '+d.noise.map(n => DAMAGE[n]).join(", ")+'</div>':'')+
+  $("idocs").innerHTML='<div class="section-head"><h2>Source documents: '+esc(a.id)+'</h2><span class="kicker">Expand to inspect</span></div><div class="docs">'+a.docs.map(d =>
+    '<details class="doc"><summary><span>'+esc(d.doc_id.split("-").pop())+' · '+esc(DOCNAME[d.label])+'</span><span class="doc-meta">'+d.text.length+' lines</span></summary>'+
+    ($("truth").checked&&d.noise.length?'<div class="dmg">Simulated damage: '+esc(d.noise.map(n => DAMAGE[n]).join(", "))+'</div>':'')+
     '<pre>'+esc(d.text.join("\n"))+'</pre></details>').join("")+'</div>';
 }
 $("ilist").addEventListener("click",e => {const tr=e.target.closest("tr");if(tr){state.isel=tr.dataset.id;renderIntake();}});

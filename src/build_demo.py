@@ -1,11 +1,23 @@
 """Build demo/index.html: the investigator page with the latest run's results embedded."""
-import json, os, random, sys
+import base64, hashlib, json, os, random, sys
 
 sys.path.insert(0, os.path.dirname(__file__))
 from documents import render
 from ingest import build_master
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def html_json(data):
+    payload = json.dumps(data, separators=(",", ":"), ensure_ascii=False)
+    return (payload.replace("&", "\\u0026").replace("<", "\\u003c").replace(">", "\\u003e")
+            .replace("\u2028", "\\u2028").replace("\u2029", "\\u2029"))
+
+
+def script_csp_hash(html):
+    script = html.split("<script>", 1)[1].split("</script>", 1)[0]
+    digest = hashlib.sha256(script.encode("utf-8")).digest()
+    return base64.b64encode(digest).decode("ascii")
 
 
 def main():
@@ -38,7 +50,8 @@ def main():
             "detail": [{k: r[k] for k in keep} for r in top]}
     with open(os.path.join(ROOT, "demo", "template.html"), encoding="utf-8") as f:
         html = f.read()
-    html = html.replace("/*DATA*/null", json.dumps(data, separators=(",", ":"), ensure_ascii=False))
+    html = html.replace("/*DATA*/null", html_json(data))
+    html = html.replace("/*CSP_HASH*/", script_csp_hash(html))
     with open(os.path.join(ROOT, "demo", "index.html"), "w", encoding="utf-8") as f:
         f.write(html)
     print("demo/index.html written,", len(html) // 1024, "KB")

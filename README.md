@@ -34,7 +34,7 @@ From the project root, run the commands in this order:
 python src/pipeline.py              # Generate 4,000 applications; check, score, route, and evaluate
 python src/ingest_eval.py           # Evaluate 1,000 applications / 4,000 synthetic documents
 python src/build_demo.py            # Generate demo/index.html from the two evaluation outputs
-python -m unittest discover tests -v # Run 12 unit and regression tests
+python -m unittest discover tests -v # Run 15 unit, regression, and security tests
 python src/monitor.py               # Check the latest scoring run and write out/alerts.json
 ```
 
@@ -164,6 +164,7 @@ src/llm_extract.py        Optional, unexecuted Anthropic extraction experiment
 demo/template.html        English investigator interface
 demo/index.html           Generated dashboard with embedded results
 tests/test_checks.py      Unit tests and Windows UTF-8 regression test
+tests/test_security.py    Embedded-data, CSP, external-resource, and storage checks
 trial/                    Supplied 10-application manual AI trial artifacts
 out/                      Generated results, examples, audit log, and alerts
 ```
@@ -177,6 +178,21 @@ out/                      Generated results, examples, audit log, and alerts
 - `out/audit_log.jsonl`: one pipeline audit record per generated application.
 - `out/alerts.json`: latest monitoring alerts.
 - `demo/index.html`: standalone investigator dashboard.
+
+## Security review
+
+The generated demo is a static file, not a web application backend. Its current security controls are:
+
+- No external scripts, fonts, images, stylesheets, analytics, network requests, cookies, browser storage, service workers, or third-party JavaScript dependencies.
+- HTML-safe JSON embedding that escapes `<`, `>`, `&`, and JavaScript line separators so document content cannot close the embedding `<script>` element.
+- Escaping of dynamic identifiers, reasons, evidence, source metadata, decisions, and document text before HTML rendering. Audit-log output uses `textContent`.
+- A Content Security Policy that denies resources by default, blocks outbound connections and objects, and permits only the generated script with the matching SHA-256 hash. The demo has no inline-event-handler or external-script dependency.
+- Synthetic data only in the supplied build. The optional Anthropic experiment is separate and is never called by the demo.
+- Automated security regression checks in `tests/test_security.py` for script breakouts, CSP hash integrity, external resources, and persistent storage.
+
+**Data confidentiality remains the user's responsibility.** Anyone who receives `demo/index.html` can read every value embedded in it. Do not put real customer, loan, identity, credit-bureau, tax, or banking data into this static demo. Repository privacy does not protect copies downloaded or shared by authorised users.
+
+The meta CSP is appropriate for this standalone prototype but does not replace production HTTP security headers or server controls. A real deployment still needs authenticated and authorised access, TLS, secure server-side case and audit storage, encryption and retention controls, CSRF protection where applicable, rate limiting, dependency and infrastructure monitoring, and a framing policy such as the `frame-ancestors` HTTP CSP directive. Browser, extension, endpoint, and operating-system compromise are outside this demo's trust boundary.
 
 ## Known limitations
 
